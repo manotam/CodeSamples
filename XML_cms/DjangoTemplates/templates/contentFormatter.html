@@ -1,0 +1,43 @@
+
+{% load static %}
+{% load templateTags %} 
+
+
+{% if project.mainContent %}
+    <div class="flex justify-center flex-col">
+
+    {% comment %} {{project|firstOne:'base_pageElements/project_'}} {% endcomment %}
+
+        {% for bundle in project.mainContent %}
+            {% with styleEntriesList=bundle.classes.style|unpackList:"_" %}
+                <div class="p-4 py-20 flex justify-center">
+
+                    {% if styleEntriesList|getListEntry:"0" == "introduction"%}
+                
+                        {% include 'base_pageElements/projectElements/introduction.html' with paraBundle=bundle %}
+                    
+                    {% elif styleEntriesList|getListEntry:"0" == "image"%}
+                
+                        {% include 'base_pageElements/projectElements/justImage.html' with paraBundle=bundle %}
+                
+                    {% elif styleEntriesList|getListEntry:"0" == "txt"%}
+                
+                        {% include 'base_pageElements/projectElements/txtImgCombo.html' with paraBundle=bundle baseLink=project.staticLinkToProject %}
+
+                    {% elif styleEntriesList|getListEntry:"0" == "list" %}
+                    
+                        {% if styleEntriesList|getListEntry:"1" == "skills" %}
+                            {% include 'base_pageElements/projectElements/skillCards.html' with paraBundle=bundle%}
+                        {% endif %}
+                    
+
+                    {% endif %}
+                </div>
+            {% endwith %}
+            
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+

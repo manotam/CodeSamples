@@ -1,0 +1,66 @@
+{% load static %}
+{% load templateTags %}
+
+<div class="text-sm flex justify-center text-justify">
+
+    {% if blockCount == 1 %} 
+        <div class="
+        {% if isSingle %}
+        w-full
+        {% else %}
+        w-3/5 sm:w-4/5 lg:w-7/12 xl:9/12 2xl:7/12
+        {% endif %}
+        ">
+        {{isSingle}}
+            {% for para in paraList %}
+                {% if  para|get_type == "list"%} 
+                    {% if para|getListType == "orderedlist" %}
+                        <ul class="pl-4 pt-2 list-disc list-outside">
+
+                            {% for listEntry in para|unpackParaList %}
+                                <li>{{listEntry}}</li>                                
+                            {% endfor %}
+                        </ul>
+
+                    {% endif %} 
+                {% elif  para|get_type == "str"%}
+                    <p class="pt-2">
+                    {{para}}
+                    </p>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    {% elif blockCount > 1 %} 
+        {% for section in paraBundle.para|splitParaToTwoSections:"2, Project description" %}
+            
+                {% for para in section %}
+
+                    {% if para == "Project description" %}
+
+                        <p class="text-center text-xl font-bold">
+                            {{para}}
+                        </p>
+                        <br />
+                    {% elif  para|get_type == "list"%}
+                            {% if para|getListType == "orderedlist" %}
+                            <ul class="pt-2 list-disc list-outside">
+
+                                {% for listEntry in para|unpackParaList %}
+                                    <li class="">{{listEntry}}</li>                                
+                                {% endfor %}
+                            </ul>
+
+                            {% endif %} 
+                    {% elif  para|get_type == "str"%}
+                        <p class="pt-2">
+                            {{para}}
+                        </p>
+                    {% endif %}
+
+                {% endfor %}
+                <br />
+        {% endfor %}
+    {% endif %}
+
+</div>

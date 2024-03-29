@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+
+{%block content %}
+
+
+
+{% include 'base_pageElements/home_aboutMe.html'%}
+
+
+
+{% include 'base_pageElements/projectElements/projectCards.html' with projectInstances=projectInstances%}
+
+   
+
+{%endblock content%}
+

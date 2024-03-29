@@ -1,0 +1,42 @@
+{% load static %}
+{% load templateTags %}
+
+{% with styleEntries=paraBundle.classes.style|unwrapStringList:"_" %}
+    {% if styleEntries|getListEntry:"1" == "single" %}
+        
+        {% include 'base_pageElements/prepBlocks/paraComboBlock.html' with paraBundle=paraBundle %}
+
+    {% elif styleEntries|getListEntry:"1" == "twoBlock" %}
+    {% comment %} two block assumes here now that one is text and the other image {% endcomment %}
+        <div class="relative flex justify-center items-center flex-col lg:flex-row gap-0">
+
+            {% with justImageLink='base_pageElements/projectElements/justImage.html' paraComboBlock='base_pageElements/prepBlocks/paraComboBlock.html' %}
+                
+                {% if styleEntries|getListEntry:"2" == "left" %}
+
+                {% comment %} <div class="" >
+                </div> {% endcomment %}
+
+                    {% include paraComboBlock with paraBundle=paraBundle alignment="left" %}
+                    {% include justImageLink with paraBundle=paraBundle %}
+                    
+                {% elif styleEntries|getListEntry:"2" == "right" %}
+                    
+                    {% include justImageLink with paraBundle=paraBundle %}
+                    {% include paraComboBlock with paraBundle=paraBundle alignment="right" %}
+                
+                {% endif %}
+                
+            {% endwith %}
+
+        </div>
+    
+    {% elif styleEntries|getListEntry:"1" == "gridImage" %}
+
+        {% comment %} {{paraBundle.classes.imgLinks|getImages:project.staticLinkToProject}} {% endcomment %}
+        {% include 'base_pageElements/projectElements/pe_gridImage.html' with paraBundle=paraBundle %}
+    
+    {% endif %}
+
+    
+{% endwith %}

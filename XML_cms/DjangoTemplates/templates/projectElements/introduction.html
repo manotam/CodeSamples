@@ -1,0 +1,45 @@
+{% load static %}
+{% load templateTags %}
+
+
+
+<div class="flex justify-center pt-14">
+
+    <div class="grid sm:grid-cols-2 grid-flow-row sm:grid-flow-col gap-x-8 text-sm w-3/5 sm:w-4/5 lg:w-7/12 xl:9/12 2xl:7/12">
+
+        {% for section in paraBundle.para|splitParaToTwoSections:"2, Introduction" %}
+            <div class="text-justify">
+            
+            {% for para in section %}
+ 
+                {% if para == "Introduction" %}
+
+                    <p class="text-center text-xl font-bold">
+                        {{para}}
+                    </p>
+                    <br />
+
+                {% elif  para|get_type == "list"%}
+                        {% if para|getListType == "orderedlist" %}
+                        <ul class="list-disc list-outside pt-2">
+
+                            {% for listEntry in para|unpackParaList %}
+                                <li>{{listEntry}}</li>                                
+                            {% endfor %}
+                        </ul>
+
+                        {% endif %} 
+                {% elif  para|get_type == "str"%}
+                    <p class="pt-2">
+                        {{para}}
+                    </p>
+                {% endif %}
+
+            {% endfor %}
+                <br />
+
+            </div> 
+        {% endfor %}
+
+    </div>
+</div>

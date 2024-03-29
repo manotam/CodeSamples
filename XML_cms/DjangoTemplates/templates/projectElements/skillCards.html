@@ -1,0 +1,144 @@
+{% load static %}
+{% load templateTags %} 
+
+{% comment %} 
+                    input
+
+bundle          > the standart content bundle
+
+                    variables
+
+mainCategory    > the main section under which the cards go
+area            > title of card
+mainSkill       > the main skill area
+subSkill        > a skill witihin the mainSkill domain
+
+{% endcomment %}
+
+<div class="basis-10/12 flex flex-col">
+
+    <div class="flex justify-center pt-8 pb-8">
+        <p class="text-4xl font-ttl font-light"> 
+            Skills
+        </p>
+    </div>
+
+    <div class="flex p-4 justify-center gap-6 sm:flex-row flex-col">
+
+        {% comment %} collect all maincategories and filter for unique occurences {% endcomment %}
+        {% with maincategories=bundle.para|getUniquesNestedListPos:"=,0" %}
+
+        {% comment %} now loop through the unique list of occurences {% endcomment %}
+        {% for currentMainCategory in maincategories %}
+
+        <div class="basis-full text-center rounded shadow-lg flex flex-col">
+            <div class="p-4 inset-x-0 bottom-0">
+                <div class="font-bold text-xl mb-2">
+                    {{currentMainCategory}}
+                </div>
+            </div>
+
+            {% comment %} loop through all paras {% endcomment %}
+            <div class="flex flex-col justify-evenly">
+
+            {% for para in bundle.para %}
+
+            {% comment %} get the current main category of the string list {% endcomment %}
+            {% with currentCategoryList=para|unpackList:"=" %}
+                        
+            {% if currentMainCategory == currentCategoryList|getListEntry:"0" %}
+                            
+            {% comment %} this is a nested function {% endcomment %}
+            {% with areaList=currentCategoryList|getListEntry:"1"|unpackList:":" %}
+            {% with mainSkillList=areaList|getListEntry:"1"|unpackList:";" %}
+                                    
+                <div class="pl-6 pr-6 pb-6 ">
+
+                    <div class="pb-4 ">
+                        <p class="font-light "> 
+                            {{areaList|getListEntry:"0"}}
+                        </p>
+    
+                    </div>
+
+                    <div class="flex justify-center flex-wrap">
+
+                    {% for mainSkillEntry in mainSkillList %}
+                    {% with mainSkill=mainSkillEntry|unpackList:"[]"%}
+                
+                        <span class="font-body text-sm font-normal 
+                        text-gray-700
+                        inline-block 
+                        bg-gray-200 
+                        rounded-lg           
+                        px-3 py-1 
+                        mr-1 mb-1
+                        flex
+                        
+                        relative
+                        
+                        {% if  mainSkill|arrLength  > "1" %}
+                        group
+                        hover:bg-purple-100 
+                        {% endif %} 
+                        self-top
+                        ">
+                            {{mainSkill|getListEntry:"0"}}
+                            {% if  mainSkill|arrLength  > "1" %}
+                            
+                            <svg fill="currentColor" class="w-2 h-2 self-center" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                            </svg>
+
+                            <div
+                                class="bg-white 
+                                shadow-lg
+                                rounded-lg 
+                                border-black  
+                                {% comment %} border-purple-200    {% endcomment %}
+                                {% comment %} border-2 {% endcomment %}
+                                text-sm font-normal 
+                                text-gray-700 
+                                hidden group-hover:block 
+                                absolute
+                                z-50
+                                start-0
+                                top-8
+                                "
+                                >
+
+                                {% for skill in mainSkill|getListEntry:"1"|unpackList:"," %}
+                                <p
+                                class="
+                                rounded-full
+                                px-3 py-1 
+                                mr-1 mb-1"
+                                >{{skill}}</p>
+                                {% endfor %}
+                                
+                            </div>
+
+                            {% endif %} 
+    
+                        </span>
+                
+
+                    {% endwith %} 
+                    {% endfor %}
+                    </div>
+                    
+                </div>
+
+            {% endwith %}  
+            {% endwith %}
+            {% endif %}
+            {% endwith %}
+            {% endfor %} 
+            </div>
+
+        </div>
+
+        {% endfor %} 
+        {% endwith %}
+    </div>
+</div>

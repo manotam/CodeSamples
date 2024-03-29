@@ -1,0 +1,176 @@
+{% load static %}
+{% load templateTags %}
+
+
+{% comment %} 
+                    input
+paraBundle
+
+
+                    variables
+
+gridBaseDim     > general dimension for the grid section (a section is a pic and the text)
+imageArr        > all images used in this block
+imgGridPos      > image position in grid
+imgGridDim      > dimension of image
+imgMaxSize      > maximum size of image
+txtGridPos
+txtGridDim
+gridOverlap
+
+
+
+{% endcomment %}
+
+
+{% with     gridBaseDim=paraBundle.classes.gridBaseDim|unpackList:"; "  imageArr=paraBundle.classes.imgLinks|unpackList:"; "  %}
+{% with     imgGridPos=paraBundle.classes.imgGridPos|unpackList:"; "    imgGridDim=paraBundle.classes.imgGridDim|unpackList:"; " %}
+{% with     txtGridPos=paraBundle.classes.txtGridPos|unpackList:"; "    txtGridDim=paraBundle.classes.txtGridDim|unpackList:"; " %}
+{% with     gridOverlap=paraBundle.classes.gridOverlap|unpackList:"; " %}
+
+    
+<div class="hidden sm:block">
+    <div class="
+    relative 
+    m-auto 
+    w-full
+    grid 
+    max-w-3xl 
+    {% comment %} grid-cols-{{gridBaseDim|getListEntry:"0"|unpackList:"-"|getListEntry:"0"}}  {% endcomment %}
+    ">
+    
+        {% for image in imageArr %}
+        {% with arrInd=imageArr|currentArrIndex:image  %}
+    
+        {% with     colSpan=imgGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowSpan=imgGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        {% with     colStart=imgGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowStart=imgGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        <div class="flex justify-center 
+        -z-{{arrInd|addition:"1"|multiply:"10"}}
+        col-span-{{colSpan}} 
+        row-span-{{rowSpan}}
+        col-start-{{colStart}} 
+        row-start-{{rowStart}}
+        {% comment %} col-end-{{colStart|addition:colSpan}}
+        row-end-{{rowStart|addition:rowSpan}} {% endcomment %}
+        max-h-[450px]
+        ">
+            <img 
+            src="{% static project.staticLinkToProject|fullLinkToFile:image %}" 
+            alt="profilePic"
+            class="rounded-lg object-contain
+            {% comment %} h-auto max-w-full {% endcomment %}
+            "
+            />
+        </div>
+        {% endwith %}
+        {% endwith %}
+    
+        {% endwith %}
+        {% endfor %}
+    
+    
+        {% for image in imageArr %}
+        {% with arrInd=imageArr|currentArrIndex:image  %}
+    
+        {% with     colSpan=txtGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowSpan=txtGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        {% with     colStart=txtGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowStart=txtGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        <div class="bg-white rounded-lg shadow-lg z-{{arrInd|addition:"1"|multiply:"10"}}
+        col-span-{{colSpan}} 
+        row-span-{{rowSpan}}
+        col-start-{{colStart}} 
+        row-start-{{rowStart}} 
+        
+        
+        {% comment %} col-end-{{colStart|addition:colSpan}}
+        row-end-{{rowStart|addition:rowSpan}} {% endcomment %}
+        ">  
+            <div class="p-4">
+                {% if arrInd == 0 %}
+                <p class="text-normal font-bold">
+                    {{paraBundle.classes.title}}
+                </p>
+                {% endif %}
+                <p class="text-sm text-justify">
+                    {{paraBundle.para|getListEntry:arrInd}}
+                </p>
+            </div>
+    
+        </div>
+        {% endwith %}    
+        {% endwith %}
+    
+        {% endwith %}
+        {% endfor %}
+    
+    
+        {% comment %} <div class="row-start-5 row-end-3 border-2 border-blue-500"></div>  {% endcomment %}
+    
+    </div> 
+</div>
+
+<div class="block sm:hidden">
+    <div class="
+    flex 
+    items-center 
+    flex-col
+    px-6
+    ">
+    
+        {% for image in imageArr %}
+        {% with arrInd=imageArr|currentArrIndex:image  %}
+    
+        {% with     colSpan=txtGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowSpan=txtGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        {% with     colStart=txtGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowStart=txtGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        <div class="bg-white 
+        rounded-lg 
+        shadow-lg
+        max-w-xs
+        flex 
+        justify-center
+        flex-col
+        
+        ">  
+            <div class="p-4 ">
+                {% if arrInd == 0 %}
+                <p class="text-normal font-bold">
+                    {{paraBundle.classes.title}}
+                </p>
+                {% endif %}
+                <p class="text-sm text-justify">
+                    {{paraBundle.para|getListEntry:arrInd}}
+                </p>
+            </div>
+    
+        </div>
+        {% endwith %}    
+        {% endwith %}
+
+        {% with     colSpan=imgGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowSpan=imgGridDim|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        {% with     colStart=imgGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"0"    rowStart=imgGridPos|getListEntry:arrInd|unpackList:"-"|getListEntry:"1" %}
+        <div class="flex justify-center 
+        py-2
+        max-h-[250px]
+        ">
+            <img 
+            src="{% static project.staticLinkToProject|fullLinkToFile:image %}" 
+            alt="profilePic"
+            class="rounded-lg object-contain
+            "
+            />
+        </div>
+        {% endwith %}
+        {% endwith %}
+
+        {% endwith %}
+        {% endfor %}
+    
+    </div> 
+</div>
+
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+
+

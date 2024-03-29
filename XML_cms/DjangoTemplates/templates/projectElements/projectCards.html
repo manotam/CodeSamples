@@ -1,0 +1,60 @@
+{% comment %} 
+You need to specify the name of the urls.py with the name=…
+parameter: 
+
+
+{% endcomment %}
+
+{% load templateTags %}
+{% load static %}
+
+
+
+<div class="flex flex-grow flex-wrap p-4 justify-center gap-6">
+  {% for project in projectInstances %} 
+
+      <a href="{% url 'projectPage' project.url %}"
+      
+      class="text-center 
+      cursor-pointer hover:bg-purple-100 
+      w-72 
+      rounded 
+      overflow-hidden shadow-lg
+      flex
+      flex-col
+      h-[430px]
+      "
+      >
+
+          <img 
+          src="{% static project.coverPic %}" alt={{project.coverPic}}
+          class="object-cover h-40 w-full
+          self-center
+          bg-white
+          "
+          >
+
+        <div class="inset-x-0 bottom-0 p-4 ">
+          <div class="font-light font-normal mb-2">
+            {{project.title.para|getListEntry:"0"}}
+            
+
+          </div>
+        </div>
+        
+        <div class="px-1 pb-2">
+            {% for skill in project.skillList %}
+                <span
+                class=" 
+                font-body text-xs
+                text-gray-700
+                font-normal
+                inline-block bg-gray-200 
+                px-3 py-1 rounded-lg  
+                mr-1 mb-1"
+                >{{skill}}</span>
+            {% endfor %}
+        </div>
+      </a>
+  {% endfor %}
+</div>

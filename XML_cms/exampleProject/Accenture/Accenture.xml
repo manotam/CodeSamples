@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article lang="">
+  <sect1>
+    <title>type:title, style:title</title>
+    <para>Accenture</para>
+  </sect1>
+  <sect1>
+    <title>type:work, style:subtype</title>
+    <para>Work Experience</para>
+  </sect1>
+  <sect1>
+    <title>type:project</title>
+    <para>Work Experience</para>
+  </sect1>
+  <sect1>
+    <title>type:skills</title>
+    <para>Python, TypeScript, Data Science, Innovation Design, Azure Cloud Services, GoLang, C#, Tech Innovation Research, XR/VR Development, Software maintenance</para>
+  </sect1>
+  <sect1>
+    <title>type:textContent, style:introduction, title:Introduction</title>
+    <para>Working as a technology innovation engineer and software developer has been a good experience. In various projects/roles my responsibilities involved navigating the fast-paced landscape of technology, staying at the forefront of industry trends such as the Meta-verse and AI. My industrial design background proved as a valuable asset and contributed to projects from conception and design to coding, testing, and deployment.</para>
+    <para/>
+    <para>My time in this role has furthered my technical proficiency but has also enhanced my communication skills within the business context. Due to the ongoing changes and developments in the tech world I continuously acquired new skills in programming languages, hardware tools and more, which will be detailed below. </para>
+  </sect1>
+  <sect1>
+    <title>type:textContent, style:txt_twoBlock_right_row, imgLinks:bci.jpg; hololens.jpg; oculus.jpg, title:Innovation Projects</title>
+    <para>It is not possible to disclose the extend and details of the innovation projects I have worked on, but can outline some aspects and the technologies which were involved. </para>
+    <para>During the Metaverse phase in the tech industry I have build a custom VR app deployment installer for the Oculus headset, which was connected to an Azure DevOps development pipeline. This way no third party would be involved for projects  with high confidentiality, reducing security risks and leaks. Next to this I participated in creating VR experiences for internal events and assisting VR workshops with clients. </para>
+    <para>To explore more the interaction possibilities with computers we worked with the Brain-Computer-Interface made by OpenBCI. This device can sense the full brainwave range and developers can access the raw data without a subscription. The goal was to investigate the technology and envision its potential. The current trend of AI /ML lead us to experiment with machine learning to train models which read the brain data and predict the emotional state of the user. Another project was done with the Mistral 7B model to interface with a local file storage and chat with the data. </para>
+  </sect1>
+  <sect1>
+    <title>type:textContent, style:txt_twoBlock_left_block, imgLinks:pythonLogo.png; databricksLogo.png; Unity-logo.png; typescriptLogo.png; azureLogo.jpg; go.png, title:Programming languages and services</title>
+    <para>The main programming language used for the above mentioned innovation projects has been Python because it gets the job done. For other roles it was used for analyzing, probing and correctly processing large datasets using the library “pandas” in the databricks environment to detect fraud in the banking sector. This included automating tasks and codify requests concerning the datasets. For the BCI project it was used to to train ML models to categorize emotional states based on the BCI reading. Following my curiosity this lead me to learn more about PyTorch.</para>
+    <para>Due to the VR/XR work I also have been learning to use Unity to deploy apps in the Oculus and Hololens headsets, while one VR project required development in TypeScript.</para>
+  </sect1>
+</article>

@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% load templateTags %}
+
+
+{% block content %}
+
+    {% if project.coverPic %}
+        <div class="flex justify-center w-full">
+
+            <img    src="{% static project.coverPic %}" 
+                    alt={{project.coverPic}}
+                    class="w-full xl:w-10/12 object-contain">
+            <br />
+            <br />
+            <br />
+
+        </div>
+
+    {% endif %}
+
+        <div class="flex justify-center flex-col font-ttl font-thin text-center rounded-full pt-10 p-2 px-12 md:px-20 lg:px-52 xl:px-72">
+            {% if project.title %}
+                {% for para in project.title.para %}
+                    <p class="text-3xl font-bold">
+                        {{para}}
+                    </p>
+                {% endfor %}
+            {% endif %}
+
+            {% if project.projectType %}
+                {% for para in project.projectType.para %}
+                    <p>{{para}}</p>
+                {% endfor %}
+            {% endif %}
+
+            <br />
+            {% if project.skills %}
+                <p>
+            
+                    {% for para in project.skills.para %}
+                        {{para}}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            <br />
+            <br />
+        </div>
+
+
+    {% if project.link %}
+        <div class="flex justify-center">
+
+            {% for para in project.link.para %}
+                            
+                <a
+                target="_blank"
+                href={{para}}
+                rel="noopener noreferrer"
+                    >
+                    <button class="bg-blue-100 hover:bg-blue-light font-ttl font-bold py-2 px-4 border-b-4 border-blue-dark hover:border-blue rounded">
+                        Visit Website
+                    </button>
+                </a>
+                
+            {% endfor %}
+            <br />
+  
+        </div>
+    {% endif %}
+
+
+    {% comment %} make a template out to of this below and include it {% endcomment %}
+
+    {% include 'base_pageElements/contentFormatter.html' with project=project %}
+
+
+
+{% endblock content %}

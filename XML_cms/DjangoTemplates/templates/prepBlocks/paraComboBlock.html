@@ -1,0 +1,28 @@
+{% load static %}
+{% load templateTags %}
+
+
+    {% if alignment == "right" %}
+        <div class="max-w-lg flex justify-end flex-col">
+            <p class="text-center font-bold text-xl pb-2">{{paraBundle.classes.title}}</p>
+        
+                {% include 'base_pageElements/prepBlocks/paraFormatter.html' with paraList=paraBundle.para blockCount=1 %}
+        
+        </div>
+    {% elif alignment == "left" %}
+        <div class="max-w-lg flex justify-start flex-col">
+            <p class="text-center font-bold text-xl pb-2">{{paraBundle.classes.title}}</p>
+        
+                {% include 'base_pageElements/prepBlocks/paraFormatter.html' with paraList=paraBundle.para blockCount=1 %}
+        
+        </div>
+
+
+{% else %}
+<div class="max-w-4xl flex justify-center flex-col">
+    <p class="text-center font-bold text-xl pb-2">{{paraBundle.classes.title}}</p>
+
+        {% include 'base_pageElements/prepBlocks/paraFormatter.html' with paraList=paraBundle.para blockCount=1 %}
+
+</div>
+{% endif %}
