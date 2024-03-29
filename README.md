@@ -5,7 +5,9 @@ This is the most recent coding project I worked on in my freetime in preparation
 
 # backgroundAnimation
 
-Just a fun visual feature for the website. Can be extended with behaviour but I had to move on and finish the rest of the portfolio stuff like the CMS or the deployment on the server. Currently you can choose between the triangle and circle shape. Only behaviour implemented is the click and drag. 
+Just a fun visual feature for the website. Can be extended with behaviour but I had to move on and finish the rest of the portfolio stuff like the CMS or the deployment on the server. Currently you can choose between the triangle and circle shape. Only behaviour implemented is the click and drag.
+
+The nice aspect of the code is that it is written in a modular way that multiple sketches can exists at the same time to eventually link certain events on pages to the sketch: e.g. clicking multiple times within a cetain time rage creates an extra sketch etc.
 
 To run:
 In the folder "backgroundAnimation" open "main.html" in your browser
