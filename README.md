@@ -23,3 +23,6 @@ Run the "main.py". You might need to install missing packages and since it was d
 How it works:
 Most is described on the project page itself: https://maiknothbaum.eu/Portfolio/
 In the folder you can check the XML file and see the structure that being used. When the projects are loaded they get passed on to the Django page rendering as a dict. The html files in the folder "DjangoTemplates" are embedded in the main html of the django app. From there on the content loaded from the xml is being styled as page elements using the templates in "DjangoTemplates/templates"
+
+![overviewDiagramm](https://github.com/manotam/CodeSamples/assets/68347418/50158622-db3c-4361-81f8-e9537aeb1c2e)
+
